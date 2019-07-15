@@ -14,7 +14,8 @@ class Player:
             tower.coordinate = coord
             
             #put walls if possible
-            for neigh in board.get_neighbour_points(coord):
+            neighbours = board.get_neighbours(coord)
+            for neigh in neighbours:
                 if board.board[neigh[0]][neigh[1]].has_tower:
                     pass
                     #
