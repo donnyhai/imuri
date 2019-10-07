@@ -1,10 +1,15 @@
 import point
+import pygame, os
+
+background = os.path.join("pictures", "background.png")
 
 class Board:
-    def __init__(self, size):
-        self.size = size
-        self.board = [[point.Point((i,j)) for i in range(self.size)] for j in range(self.size)]
+    def __init__(self, board_size, pixel_size):
+        self.size = board_size
+        self.board = self.set_init_board()
         self.lines = self.set_lines()
+        self.rect = pygame.Rect((0,0), pixel_size)
+        self.background = background
     
     def is_inside(self, coord):
         return 0 <= coord[0] < self.size and 0 <= coord[1] < self.size
@@ -18,5 +23,15 @@ class Board:
     def set_lines(self):
         pass
     
+    def set_init_board(self):
+        board = {}
+        for i in range(self.size):
+            for j in range(self.size):
+                board[(i,j)] = point.Point((i,j))
+                #######################################set rect
+    
+    def draw_background(self, surface_full):
+        surface_full.blit(self.background, (0,0))
+        
+    
 
-b = Board(10)
