@@ -30,3 +30,8 @@ class Player:
 
                     
                     
+class Human_Player(Player):
+    pass
+
+class Computer_Player(Player):
+    pass

@@ -1,17 +1,19 @@
 import pygame
 import variables as v
-import board
+import game
+import painter
 
 class App:
     
     def __init__(self):
         self.running = False
-        self.surface_full = None
-        self.board = board.Board(30, (0,0))
+        self.game = game.Game(v.window_size)
+        self.painter = painter.Painter(self.game)
     
     def do_init(self):
         pygame.init()
-        self.surface_full = pygame.display.set_mode(v.window_size, pygame.HWSURFACE)
+        surface_full = pygame.display.set_mode(v.window_size)
+        self.game.set_surface(surface_full)
         self.running = True
     
     def do_clean_up(self):
@@ -29,10 +31,10 @@ class App:
         
         if event.type == pygame.MOUSEBUTTONUP:
             pass
+          
             
     def do_render(self):
-        
-        self.board.draw_background(self.surface_full)
+        self.painter.draw_ingame_frame()
     
     
     

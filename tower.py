@@ -11,6 +11,9 @@ class Tower:
         
     def set_board_coordinate(self, coord):   
         self.coordinate = coord
+    
+    def set_tower_type(self, tower_type):
+        self.tower_type = tower_type
         
         
     
