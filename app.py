@@ -7,13 +7,14 @@ class App:
     
     def __init__(self):
         self.running = False
-        self.game = game.Game(v.window_size)
+        self.game = game.HvsH_Game(v.window_size)
         self.painter = painter.Painter(self.game)
     
     def do_init(self):
         pygame.init()
+        pygame.display.init()
         surface_full = pygame.display.set_mode(v.window_size)
-        self.game.set_surface(surface_full)
+        self.game.set_surface(surface_full) 
         self.running = True
     
     def do_clean_up(self):

@@ -1,6 +1,7 @@
 import random
 import pygame
 import colors as c
+import numpy as np
 
 
 
@@ -23,10 +24,22 @@ def standard_color(surface_size, color):
     s.fill(color)
     return s
 
+def overlapping_circles(surface_size, colors):
+    s = pygame.Surface(surface_size)
+    l = len(colors)
+    alpha = int(1/(l+1) * 255)
+    for i in range(l):
+        color = colors[i]
+        color = (color[0], color[1], color[2], alpha)
+        pygame.draw.circle(s, color, (int(1/2 * surface_size[0]), int(1/2 * surface_size[1])), int(3/8 * (1 - np.power(1/3,l-i)) * surface_size[0]))
+        alpha += int(1/(1+l) * 255)
+    return s
+
 #################################################################
 
 
 
-
-new_image_file = "img/background3.png"
-pygame.image.save(randomly_mixed_colors((5000,5000), [c.background_color1, c.background_color2, c.background_color3, c.background_color4]), new_image_file)
+#adapt following variables to create a image file which you are wanting
+new_image_file = "img/point.png"
+pygame.image.save(overlapping_circles((200,200), [c.point_color1, c.point_color2, c.point_color3, c.point_color4]), new_image_file)
+#pygame.image.save(randomly_mixed_colors((5000,5000), [c.background_color1, c.background_color2, c.background_color3, c.background_color4]), new_image_file)
